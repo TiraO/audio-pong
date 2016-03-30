@@ -1,0 +1,18 @@
+{
+  "name": "audio-pong",
+  "version": "1.0.0",
+  "description": "sound based pong game",
+  "main": "main.js",
+  "scripts": {
+    "test": "jasmine"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "grunt": "^0.4.5",
+    "grunt-contrib-jst": "^1.0.0",
+    "grunt-contrib-watch": "^1.0.0",
+    "grunt-exec": "^0.4.6",
+    "grunt-include-source": "^0.7.1"
+  }
+}
