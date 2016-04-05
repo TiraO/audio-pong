@@ -1,14 +1,16 @@
 var DebugRenderer = function(){
+  var stage, graphics, renderer;
+  
   this.render = function(){
-    var renderer = PIXI.autoDetectRenderer(800, 600, { antialias: true });
+    renderer = PIXI.autoDetectRenderer(800, 600, { antialias: true });
     document.body.appendChild(renderer.view);
 
     // create the root of the scene graph
-    var stage = new PIXI.Container();
+    stage = new PIXI.Container();
 
     stage.interactive = true;
 
-    var graphics = new PIXI.Graphics();
+    graphics = new PIXI.Graphics();
 
     // set a fill and line style
     graphics.beginFill(0xFF3300);
@@ -50,4 +52,12 @@ var DebugRenderer = function(){
       requestAnimationFrame( animate );
     }
   }
+  this.renderBall = function(ball){
+    var radius = 10;
+    graphics.clear();
+    graphics.lineStyle(2, 0xFF00FF, 1);
+    graphics.beginFill(0xFFFF0B, 0.5);
+    graphics.drawCircle(ball.position.x, ball.position.y, radius * 2);
+    graphics.endFill();
+  };
 }

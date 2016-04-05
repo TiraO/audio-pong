@@ -5,21 +5,25 @@
     velocity: {x: 5, y:10}
   };
   var stage = {
-    width: 100,
+    width: 500,
     height: 500
   };
  
   var renderer = new DebugRenderer();
-  var updateAndRender = function(){
+  var update = function(){
     ball = ballKinematicsUpdater.update(ball, stage);
-    renderer.renderBall(ball);
     console.log(ball.position.x, ball.position.y);
   }
-    
+  var render = function(){
+    renderer.renderBall(ball);
+    requestAnimationFrame(render);
+  };
+  
   document.onreadystatechange = function(event){
     if(document.readyState == "complete"){
       renderer.render();
-      var interval = window.setInterval(updateAndRender, 250);
+      requestAnimationFrame(render);
+      var interval = window.setInterval(update, 65);
   
   console.log("interval", interval);
   }};
