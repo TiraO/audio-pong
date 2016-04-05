@@ -12,16 +12,15 @@
   var renderer = new DebugRenderer();
   var update = function(){
     ball = ballKinematicsUpdater.update(ball, stage);
-    console.log(ball.position.x, ball.position.y);
   }
   var render = function(){
-    renderer.renderBall(ball);
+    renderer.render(stage, ball);
     requestAnimationFrame(render);
   };
   
   document.onreadystatechange = function(event){
     if(document.readyState == "complete"){
-      renderer.render();
+      renderer.init();
       requestAnimationFrame(render);
       var interval = window.setInterval(update, 65);
   
