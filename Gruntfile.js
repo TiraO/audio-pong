@@ -54,5 +54,5 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-include-source');
 //  grunt.loadNpmTasks('grunt-contrib-connect');
   grunt.loadNpmTasks('grunt-contrib-jst');
-  grunt.registerTask('default', ['includeSource', 'exec:compile_less', 'jst:compile', 'watch']);
+  grunt.registerTask('default', ['includeSource', 'jst:compile', 'watch']);
 };
