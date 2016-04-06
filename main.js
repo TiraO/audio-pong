@@ -1,5 +1,5 @@
 (function(){
-  var ballKinematicsUpdater = new BallKinematicsUpdater();
+  var ballKinematicsUpdater = new BallKinematicsUpdater(new WallCollisionDetector());
   var ball = {
     position: {x:0, y:0},
     velocity: {x: 5, y:10}
