@@ -12,9 +12,9 @@ describe("WallCollisionDetector", function(){
     };
   });
   
-  describe("detectCollision", function(){
+  describe("detectCollisions", function(){
     it("returns an empty array", function() {
-      var collisions = wallCollisionDetector.detectCollision(ball, stage);
+      var collisions = wallCollisionDetector.detectCollisions(ball, stage);
       expect(collisions).toEqual([]);
     });
         
@@ -25,14 +25,14 @@ describe("WallCollisionDetector", function(){
       });
       
       it("returns a collision", function(){
-        var collisions = wallCollisionDetector.detectCollision(ball, stage);
+        var collisions = wallCollisionDetector.detectCollisions(ball, stage);
         expect(collisions.length).toBe(1);
       });
       
       describe("the collision", function(){
         var collision;
         beforeEach(function(){
-            collision = wallCollisionDetector.detectCollision(ball, stage)[0];
+            collision = wallCollisionDetector.detectCollisions(ball, stage)[0];
         });
         
         it("has an x position of the left wall", function(){
@@ -60,14 +60,14 @@ describe("WallCollisionDetector", function(){
       });
       
       it("returns a collision", function(){
-        var collisions = wallCollisionDetector.detectCollision(ball, stage);
+        var collisions = wallCollisionDetector.detectCollisions(ball, stage);
         expect(collisions.length).toBe(1);
       });
       
       describe("the collision", function(){
         var collision;
         beforeEach(function(){
-            collision = wallCollisionDetector.detectCollision(ball, stage)[0];
+            collision = wallCollisionDetector.detectCollisions(ball, stage)[0];
         });
         
         it("has an x position of the right wall", function(){
@@ -95,14 +95,14 @@ describe("WallCollisionDetector", function(){
       });
       
       it("returns a collision", function(){
-        var collisions = wallCollisionDetector.detectCollision(ball, stage);
+        var collisions = wallCollisionDetector.detectCollisions(ball, stage);
         expect(collisions.length).toBe(1);
       });
       
       describe("the collision", function(){
         var collision;
         beforeEach(function(){
-            collision = wallCollisionDetector.detectCollision(ball, stage)[0];
+            collision = wallCollisionDetector.detectCollisions(ball, stage)[0];
         });
         
         it("has an x position of the original velocity plus the original position", function(){
@@ -128,14 +128,14 @@ describe("WallCollisionDetector", function(){
       });
       
       it("returns a collision", function(){
-        var collisions = wallCollisionDetector.detectCollision(ball, stage);
+        var collisions = wallCollisionDetector.detectCollisions(ball, stage);
         expect(collisions.length).toBe(1);
       });
       
       describe("the collision", function(){
         var collision;
         beforeEach(function(){
-            collision = wallCollisionDetector.detectCollision(ball, stage)[0];
+            collision = wallCollisionDetector.detectCollisions(ball, stage)[0];
         });
         
         it("has an x position of the original velocity plus the original position", function(){

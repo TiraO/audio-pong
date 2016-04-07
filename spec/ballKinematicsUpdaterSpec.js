@@ -2,7 +2,7 @@ describe("BallKinematicsUpdater", function(){
   var ballKinematicsUpdater, wallCollisionDetector;
   beforeEach(function(){
     wallCollisionDetector = new WallCollisionDetector();
-    spyOn(wallCollisionDetector, "detectCollision").and.returnValue([]);
+    spyOn(wallCollisionDetector, "detectCollisions").and.returnValue([]);
     ballKinematicsUpdater = new BallKinematicsUpdater(wallCollisionDetector);
   });
   
@@ -33,7 +33,7 @@ describe("BallKinematicsUpdater", function(){
     describe("when there is a collision", function(){
       beforeEach(function(){
         var someCollision = { "some": "suggested ball state" };
-        wallCollisionDetector.detectCollision.and.returnValue([someCollision]);
+        wallCollisionDetector.detectCollisions.and.returnValue([someCollision]);
       });
       
       it("returns that collision as the new ball", function(){

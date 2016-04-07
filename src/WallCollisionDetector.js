@@ -1,5 +1,5 @@
 var WallCollisionDetector = function(){
-  this.detectCollision = function(ball, stage){
+  this.detectCollisions = function(ball, stage){
     var collisions = [];
     var updatedBall = {
       position:

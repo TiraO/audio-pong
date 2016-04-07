@@ -9,7 +9,7 @@ var BallKinematicsUpdater = function(wallCollisionDetector){
         velocity: ball.velocity
     };
     
-    var collisions = wallCollisionDetector.detectCollision(ball, stage);
+    var collisions = wallCollisionDetector.detectCollisions(ball, stage);
     if(collisions.length > 0 ){
       return collisions[0];
     }
