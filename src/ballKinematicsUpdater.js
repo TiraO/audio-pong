@@ -1,5 +1,5 @@
-var BallKinematicsUpdater = function(wallCollisionDetector){
-  this.update = function(ball, stage){
+var BallKinematicsUpdater = function(wallCollisionDetector, paddleCollisionDetector){
+  this.update = function(ball, stage, paddle){
     var updatedBall = {
       position:
         {
@@ -8,8 +8,12 @@ var BallKinematicsUpdater = function(wallCollisionDetector){
         },
         velocity: ball.velocity
     };
-    
     var collisions = wallCollisionDetector.detectCollisions(ball, stage);
+    var paddleCollision = paddleCollisionDetector.detectCollision(ball, paddle);
+    if(paddleCollision){
+      collisions.push(paddleCollision);
+    }
+    
     if(collisions.length > 0 ){
       return collisions[0];
     }
