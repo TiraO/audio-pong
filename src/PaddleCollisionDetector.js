@@ -15,17 +15,30 @@ var PaddleCollisionDetector = function(){
 
       
       var hitLocationProportion = (updatedBall.position.x - paddle.bottomLeft.x - paddle.width/2)/paddle.width;
-      var radians = Math.atan2(ball.velocity.y, ball.velocity.x);
+              
+      var normalize = function(vector){
+        var vectorLength = Math.sqrt(vector.x*vector.x + vector.y*vector.y);
+        var normalized = {
+          x: vector.x/vectorLength, 
+          y: vector.y/vectorLength
+        }
+        return normalized;
+      };
+      
+      var normal = normalize({ y: -20, x: hitLocationProportion*10});
+      var incidenceNormalDot = ball.velocity.x*normal.x + ball.velocity.y*normal.y;
+      var reflection = {
+        x: 2*incidenceNormalDot*normal.x - ball.velocity.x,
+        y: 2*incidenceNormalDot*normal.y - ball.velocity.y
+      };
       
       return {
         position: {
           x: updatedBall.position.x,
           y: paddle.bottomLeft.y - paddle.height
         },
-        velocity: {
-          x: ball.velocity.x*Math.cos(radians),
-          y: -1*ball.velocity.y*Math.sin(radians)
-        }
+        velocity: reflection, 
+        normal: normal
       };
     }
     return null;

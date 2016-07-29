@@ -8,11 +8,15 @@
     width: 500,
     height: 500
   };
-  var paddle = new Paddle({stage: stage});
+  var paddle = new Paddle({stage: stage, width: 300});
  
   var renderer = new DebugRenderer();
   var update = function(){
     ball = ballKinematicsUpdater.update(ball, stage, paddle);
+  }
+  var rupdate = function(){
+    update();
+    requestAnimationFrame(rupdate);
   }
   var render = function(){
     renderer.render(stage, ball, paddle);
@@ -23,8 +27,9 @@
     if(document.readyState == "complete"){
       renderer.init();
       requestAnimationFrame(render);
-      var interval = window.setInterval(update, 15);
+      requestAnimationFrame(rupdate);
+//      var interval = window.setInterval(update, 15);
   
-  console.log("interval", interval);
+//  console.log("interval", interval);
   }};
 })();

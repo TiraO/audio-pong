@@ -16,7 +16,6 @@ var DebugRenderer = function(){
     this.renderStage(stage);
     this.renderBall(ball);
     this.renderPaddle(paddle);
-//    console.log(paddle);
     
     graphics.endFill();
     renderer.render(pixiStage);
@@ -32,14 +31,17 @@ var DebugRenderer = function(){
     graphics.lineStyle(2, 0x0FF0FF, 1);
     graphics.beginFill(0xFF700B, 1);
     graphics.drawRect(paddle.bottomLeft.x, paddle.bottomLeft.y - paddle.height, paddle.width, paddle.height);
-    graphics.drawRect(10, 10, 100, 200);
 
   };
   this.renderBall = function(ball){
-    var radius = 5;
+    var radius = 2;
     graphics.lineStyle(2, 0xFF00FF, 1);
     graphics.beginFill(0xFFFF0B);
     graphics.drawCircle(ball.position.x, ball.position.y, radius * 2);
+    if(ball.normal){
+      debugger
+      graphics.lineTo(ball.normal.x, ball.normal.y);
     
+    }
   };
 }
