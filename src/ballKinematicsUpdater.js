@@ -15,6 +15,20 @@ var BallKinematicsUpdater = function(wallCollisionDetector, paddleCollisionDetec
     }
     
     if(collisions.length > 0 ){
+      var collision = collisions[0];
+      updatedBall = {
+        normal: collision.normal,
+        position:
+          {
+            x: Math.round(collision.position.x),
+            y: Math.round(collision.position.y)
+          },
+          velocity: 
+          {
+            x: Math.round(collision.velocity.x),
+            y: Math.round(collision.velocity.y)
+          },
+      };
       return collisions[0];
     }
     return updatedBall;

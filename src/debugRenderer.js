@@ -39,9 +39,8 @@ var DebugRenderer = function(){
     graphics.beginFill(0xFFFF0B);
     graphics.drawCircle(ball.position.x, ball.position.y, radius * 2);
     if(ball.normal){
-      debugger
-      graphics.lineTo(ball.normal.x, ball.normal.y);
-    
+      graphics.moveTo(ball.position.x, ball.position.y);
+      graphics.lineTo(ball.position.x + ball.normal.x * 100, ball.position.y + ball.normal.y * 100);
     }
   };
 }

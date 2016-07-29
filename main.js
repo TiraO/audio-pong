@@ -2,7 +2,7 @@
   var ballKinematicsUpdater = new BallKinematicsUpdater(new WallCollisionDetector(), new PaddleCollisionDetector());
   var ball = {
     position: {x:0, y:0},
-    velocity: {x: 5, y:10}
+    velocity: {x: 10, y:20}
   };
   var stage = {
     width: 500,
@@ -27,9 +27,7 @@
     if(document.readyState == "complete"){
       renderer.init();
       requestAnimationFrame(render);
-      requestAnimationFrame(rupdate);
-//      var interval = window.setInterval(update, 15);
-  
-//  console.log("interval", interval);
+//      requestAnimationFrame(rupdate);
+      var interval = window.setInterval(update, 50);
   }};
 })();
