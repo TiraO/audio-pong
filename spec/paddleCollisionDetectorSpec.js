@@ -2,7 +2,8 @@ describe("PaddleCollisionDetector", function(){
   var paddleCollisionDetector, ball, paddle;
   beforeEach(function(){
     ball = new Ball();
-    paddle = new Paddle({stage: {height: 600}});
+    paddle = new Paddle({
+      stage: {height: 600}});
     paddleCollisionDetector = new PaddleCollisionDetector();
   });
   describe("detectCollision", function(){
@@ -37,9 +38,11 @@ describe("PaddleCollisionDetector", function(){
           ball.position.x = 204;
           collision = paddleCollisionDetector.detectCollision(ball, paddle);  
         });
+        
         it("reverses its y direction", function(){
           expect(collision.velocity.y).toBe( -7);
         });
+        
         it("maintains the same x speed", function(){
           expect(collision.velocity.x).toBe(1);
         });
@@ -63,7 +66,7 @@ describe("PaddleCollisionDetector", function(){
           var newTotalSpeed = Math.sqrt(
             collision.velocity.x*collision.velocity.x + collision.velocity.y *collision.velocity.y);
           
-          expect(newTotalSpeed).toBe(originalTotalSpeed);
+          expect(newTotalSpeed).toBeCloseTo(originalTotalSpeed);
           
         });
       });
@@ -71,7 +74,9 @@ describe("PaddleCollisionDetector", function(){
     
     describe("when the ball will be to the right of the paddle", function(){
       beforeEach(function(){
-        ball.position.x = 300;
+        ball.position.x = 230;
+        paddle.bottomLeft.x = 200;
+        paddle.width = 30;
       });
       
       it("returns null", function(){
@@ -98,7 +103,7 @@ describe("PaddleCollisionDetector", function(){
       });
     });
     
-     describe("when the ball will bebelow paddle", function(){
+     describe("when the ball will be below paddle", function(){
       beforeEach(function(){
         ball.position.y = 650;
       });

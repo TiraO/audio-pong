@@ -28,8 +28,8 @@ var PaddleCollisionDetector = function(){
       var normal = normalize({ y: -20, x: hitLocationProportion*10});
       var incidenceNormalDot = ball.velocity.x*normal.x + ball.velocity.y*normal.y;
       var reflection = {
-        x: 2*incidenceNormalDot*normal.x - ball.velocity.x,
-        y: 2*incidenceNormalDot*normal.y - ball.velocity.y
+        x: -1*(2*incidenceNormalDot*normal.x - ball.velocity.x),
+        y: -1*(2*incidenceNormalDot*normal.y - ball.velocity.y)
       };
       
       return {
