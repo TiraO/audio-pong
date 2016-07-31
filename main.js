@@ -10,6 +10,8 @@
   };
   var paddle = new Paddle({stage: stage, width: 300});
  
+  var paddleController = new PaddleController({paddle: paddle});
+  var arrowKeyPaddleInput = new ArrowKeyPaddleInput({paddleController: paddleController});
   var renderer = new DebugRenderer();
   var update = function(){
     ball = ballKinematicsUpdater.update(ball, stage, paddle);
