@@ -1,17 +1,17 @@
 (function(){
-  var ballKinematicsUpdater = new BallKinematicsUpdater(new WallCollisionDetector(), new PaddleCollisionDetector());
+  window.singletonContext = new SingletonContext();
+  
+  var ballKinematicsUpdater = new BallKinematicsUpdater({
+      wallCollisionDetector: new WallCollisionDetector(), 
+      paddleCollisionDetector: new PaddleCollisionDetector()});
   var ball = {
     position: {x:0, y:0},
     velocity: {x: 10, y:20}
   };
-  var stage = {
-    width: 500,
-    height: 500
-  };
-  var paddle = new Paddle({stage: stage, width: 300});
  
-  var paddleController = new PaddleController({paddle: paddle});
-  var arrowKeyPaddleInput = new ArrowKeyPaddleInput({paddleController: paddleController});
+  var stage = singletonContext.stage;
+  var paddle = singletonContext.arrowControlledPaddle;
+ 
   var renderer = new DebugRenderer();
   var update = function(){
     ball = ballKinematicsUpdater.update(ball, stage, paddle);

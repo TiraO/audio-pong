@@ -1,4 +1,5 @@
 var Paddle = function(options){
+  options = options || {};
   var stage = options.stage || {
     width: 200,
     height: 200

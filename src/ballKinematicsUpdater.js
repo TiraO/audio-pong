@@ -1,5 +1,10 @@
-var BallKinematicsUpdater = function(wallCollisionDetector, paddleCollisionDetector){
+var BallKinematicsUpdater = function(options){
+ 
   this.update = function(ball, stage, paddle){
+     var options = options || {};
+  var wallCollisionDetector = options.wallCollisionDetector || singletonContext.wallCollisionDetector;
+  var paddleCollisionDetector = options.paddleCollisionDetector || singletonContext.paddleCollisionDetector;
+  
     var updatedBall = {
       position:
         {

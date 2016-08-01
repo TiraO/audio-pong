@@ -5,7 +5,9 @@ describe("BallKinematicsUpdater", function(){
     paddleCollisionDetector = new PaddleCollisionDetector();
     spyOn(wallCollisionDetector, "detectCollisions").and.returnValue([]);
     spyOn(paddleCollisionDetector, "detectCollision").and.returnValue(null);
-    ballKinematicsUpdater = new BallKinematicsUpdater(wallCollisionDetector, paddleCollisionDetector);
+    ballKinematicsUpdater = new BallKinematicsUpdater({
+      wallCollisionDetector: wallCollisionDetector, 
+      paddleCollisionDetector: paddleCollisionDetector});
   });
   
   describe("update", function(){
