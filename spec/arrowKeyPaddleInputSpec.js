@@ -1,7 +1,7 @@
 describe("ArrowKeyPaddleInput", function(){
   var paddleController, arrowKeyPaddleInput;
   beforeEach(function(){
-    paddleController = new PaddleController();
+    paddleController = new PaddleController({paddle: new Paddle()});
     arrowKeyPaddleInput = new ArrowKeyPaddleInput({paddleController: paddleController});
   });
 
