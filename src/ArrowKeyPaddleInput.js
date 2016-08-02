@@ -3,19 +3,23 @@ var ArrowKeyPaddleInput = function(options){
   var inputStates = { NONE: 'none', RIGHT: 'right', LEFT: 'left', LEFT_AND_RIGHT: 'left and right' }
   var inputState = inputStates.NONE;
   var movePaddle = function(){
-    paddleController.moveRight(10);
+    if(inputState == inputStates.RIGHT){
+      paddleController.moveRight(10);
+    } else if(inputState == inputStates.LEFT) {
+      paddleController.moveLeft(10);
+    }
   };
   
   var bindInput = function(){
+    setInterval(movePaddle, 15);
+    
     document.onkeydown = function(keyboardEvent){
       if(inputState == inputStates.NONE){
         if(keyboardEvent.code == "ArrowRight"){
-          paddleController.moveRight(10);
+          inputState = inputStates.RIGHT;
         } else if(keyboardEvent.code == "ArrowLeft") {
-          paddleController.moveLeft(10);
+          inputState = inputStates.LEFT;
         }
-        inputState = inputState.LEFT_AND_RIGHT;
-        setInterval(movePaddle, 15);
       }
     };
     
