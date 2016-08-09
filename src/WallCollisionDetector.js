@@ -9,24 +9,33 @@ var WallCollisionDetector = function(){
       },
       velocity: ball.velocity
     };
+
+    var ballHasStruckLeftWall = updatedBall.position.x < 0;
+    var ballHasStruckRightWall = updatedBall.position.x > stage.width;
+    var ballHasStruckUpperWall = updatedBall.position.y < 0;
+    var ballHasStruckLowerWall = updatedBall.position.y > stage.height;
     
-    if(updatedBall.position.x < 0) {
+    if(ballHasStruckLeftWall) {
       updatedBall.position.x = 0;
       updatedBall.velocity.x *= -1;
+      updatedBall.collisionSurface = 'LEFT_WALL';
       collisions.push(updatedBall);
-    } else if(updatedBall.position.x > stage.width) {
+    } else if(ballHasStruckRightWall) {
       updatedBall.position.x = stage.width;
       updatedBall.velocity.x *= -1;
+      updatedBall.collisionSurface = 'RIGHT_WALL';
       collisions.push(updatedBall);
     }
     
-    if(updatedBall.position.y < 0){
+    if(ballHasStruckUpperWall){
       updatedBall.position.y = 0;
       updatedBall.velocity.y *= -1;
+      updatedBall.collisionSurface = 'TOP_WALL';
       collisions.push(updatedBall);
-    } else if(updatedBall.position.y > stage.height){
+    } else if(ballHasStruckLowerWall){
       updatedBall.position.y = stage.height;
       updatedBall.velocity.y *= -1;
+      updatedBall.collisionSurface = 'BOTTOM_WALL';
       collisions.push(updatedBall);
     }
     

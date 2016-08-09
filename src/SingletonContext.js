@@ -9,4 +9,8 @@ var SingletonContext = function(){
   this.arrowKeyPaddleInput = new ArrowKeyPaddleInput({paddleController: this.arrowPaddleController});
   
   this.balls = [new Ball()];
+  
+  this.audioContext =  new AudioContext();
+  this.audioPanner = this.audioContext.createStereoPanner();
+  this.audioRenderer = new AudioRenderer();
 };

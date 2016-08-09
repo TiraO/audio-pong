@@ -34,6 +34,12 @@ describe("WallCollisionDetector", function(){
         beforeEach(function(){
             collision = wallCollisionDetector.detectCollisions(ball, stage)[0];
         });
+
+        it("is tagged as a collision with the left wall", function() {
+	        expect(collision.collisionSurface).toEqual('LEFT_WALL');
+	      });
+        
+        
         
         it("has an x position of the left wall", function(){
           expect(collision.position.x).toEqual(0);
@@ -70,6 +76,10 @@ describe("WallCollisionDetector", function(){
             collision = wallCollisionDetector.detectCollisions(ball, stage)[0];
         });
         
+        it("is tagged as a collision with the right wall", function() {
+	        expect(collision.collisionSurface).toEqual('RIGHT_WALL');
+	      });
+        
         it("has an x position of the right wall", function(){
           expect(collision.position.x).toEqual(500);
         });
@@ -105,6 +115,10 @@ describe("WallCollisionDetector", function(){
             collision = wallCollisionDetector.detectCollisions(ball, stage)[0];
         });
         
+        it("is tagged as a collision with the top wall", function() {
+	        expect(collision.collisionSurface).toEqual('TOP_WALL');
+	      });
+        
         it("has an x position of the original velocity plus the original position", function(){
           expect(collision.position.x).toEqual(15);
         });
@@ -114,11 +128,11 @@ describe("WallCollisionDetector", function(){
         });
         
         it("has the original x velocity", function(){
-          expect(collision.velocity.x).toEqual(10);
+  expect(collision.velocity.x).toEqual(10);
         });
-        it("has a reversed y velocity", function(){
-          expect(collision.velocity.y).toEqual(11);
-        });
+        
+        it("has a reversed y velocity", function(){          expect(collision.velocity.y).toEqual(11);
+                                                  });
       });
     });
     
@@ -137,6 +151,10 @@ describe("WallCollisionDetector", function(){
         beforeEach(function(){
             collision = wallCollisionDetector.detectCollisions(ball, stage)[0];
         });
+
+        it("is tagged as a collision with the bottom wall", function() {
+	        expect(collision.collisionSurface).toEqual('BOTTOM_WALL');
+	      });
         
         it("has an x position of the original velocity plus the original position", function(){
           expect(collision.position.x).toEqual(15);

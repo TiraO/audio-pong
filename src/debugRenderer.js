@@ -12,9 +12,12 @@ var DebugRenderer = function(){
   };
   
   this.render = function(stage, ball, paddle){
+   
     graphics.clear();
     this.renderStage(stage);
+    this.renderBallY(stage, ball);
     this.renderBall(ball);
+    this.renderBallSound(stage, ball);
     this.renderPaddle(paddle);
     
     graphics.endFill();
@@ -23,10 +26,20 @@ var DebugRenderer = function(){
   
   this.renderStage = function(stage){
     graphics.lineStyle(2, 0x0000FF, 1);
-    graphics.beginFill(0x12700B, 1);
+    graphics.beginFill(0x02070B, 1);
     graphics.drawRect(0, 0, stage.width, stage.height);
   };
   
+  this.renderBallSound = function(stage, ball){
+     var audioRenderer = singletonContext.audioRenderer;
+    audioRenderer.render(stage, ball);
+  };
+  
+  this.renderBallY = function(stage, ball){
+    graphics.lineStyle(2, 0x0000FF, 1);
+    graphics.beginFill(0xFF700B, 1);
+    graphics.drawRect(0, ball.position.y - 4, stage.width, 5);
+  }
   this.renderPaddle = function(paddle){
     graphics.lineStyle(2, 0x0FF0FF, 1);
     graphics.beginFill(0xFF700B, 1);
