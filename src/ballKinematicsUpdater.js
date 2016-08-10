@@ -19,10 +19,13 @@ var BallKinematicsUpdater = function(options){
     if(paddleCollision){
       collisions.push(paddleCollision);
     }
+    var result = {
+      ball: updatedBall
+    };
     
     if(collisions.length > 0 ){
-      return collisions[0];
+      result.ball = collisions[0];
     }
-    return updatedBall;
+    return result;
   };
 };

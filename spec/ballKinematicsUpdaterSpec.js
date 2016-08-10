@@ -27,12 +27,12 @@ describe("BallKinematicsUpdater", function(){
     });
     
     it("sets the x position to the position plus the x speed", function(){
-      var updatedBall = ballKinematicsUpdater.update(ball,  stage, paddle);
+      var updatedBall = ballKinematicsUpdater.update(ball,  stage, paddle).ball;
       expect(updatedBall.position.x).toEqual(15);
     });
     
     it("sets the y position to the position plus the y speed", function(){
-      var updatedBall = ballKinematicsUpdater.update(ball,  stage, paddle);
+      var updatedBall = ballKinematicsUpdater.update(ball,  stage, paddle).ball;
       expect(updatedBall.position.y).toEqual(20);
     });
     
@@ -43,7 +43,7 @@ describe("BallKinematicsUpdater", function(){
       });
       
       it("returns that collision as the new ball", function(){
-        var updatedBall = ballKinematicsUpdater.update(ball,  stage, paddle);
+        var updatedBall = ballKinematicsUpdater.update(ball,  stage, paddle).ball;
         expect(updatedBall).toEqual( { "some": "suggested ball state" });
       });
     });
@@ -54,7 +54,7 @@ describe("BallKinematicsUpdater", function(){
       });
       
       it("returns that collision as the new ball", function(){
-        var updatedBall = ballKinematicsUpdater.update(ball,  stage, paddle);
+        var updatedBall = ballKinematicsUpdater.update(ball,  stage, paddle).ball;
         expect(updatedBall).toEqual( { "some": "suggested ball state" });
       });
     });
