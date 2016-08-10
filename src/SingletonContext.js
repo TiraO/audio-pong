@@ -13,6 +13,7 @@ var SingletonContext = function(){
     position: {x:0, y:0},
     velocity: {x: 10, y:20}
   };
+  this.playerScore = 0;
   
   this.audioContext =  window.acx = window.acx || new AudioContext();
   this.audioPanner = this.audioContext.createStereoPanner();

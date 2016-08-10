@@ -24,6 +24,9 @@ describe("PaddleCollisionDetector", function(){
         collision = paddleCollisionDetector.detectCollision(ball, paddle);
       });
 
+      it('has a collisionSurface of PADDLE', function(){
+        expect(collision.collisionSurface).toBe('PADDLE');
+      });
       it("has an x position of the original x plus x speed", function(){
         expect(collision.position.x).toBe(201);
       });

@@ -38,24 +38,35 @@ describe("BallKinematicsUpdater", function(){
     
     describe("when there is a wall collision", function(){
       beforeEach(function(){
-        var someCollision = { "some": "suggested ball state" };
+        var someCollision = { collisionSurface: 'LEFT_WALL', position: {} };
         wallCollisionDetector.detectCollisions.and.returnValue([someCollision]);
       });
       
       it("returns that collision as the new ball", function(){
         var updatedBall = ballKinematicsUpdater.update(ball,  stage, paddle).ball;
-        expect(updatedBall).toEqual( { "some": "suggested ball state" });
+        expect(updatedBall).toEqual( { collisionSurface: 'LEFT_WALL', position: {} });
       });
+      
+      it('returns the collision surface as a collision surface', function(){
+        var collisionSurfaces = ballKinematicsUpdater.update(ball,  stage, paddle).collisionSurfaces;
+        expect(collisionSurfaces).toEqual(['LEFT_WALL']);
+      });
+      
     });
     describe("when there is a paddle collision", function(){
       beforeEach(function(){
-        var someCollision = { "some": "suggested ball state" };
+        var someCollision = { collisionSurface:'PADDLE', position: {}};
         paddleCollisionDetector.detectCollision.and.returnValue(someCollision);
       });
       
       it("returns that collision as the new ball", function(){
         var updatedBall = ballKinematicsUpdater.update(ball,  stage, paddle).ball;
-        expect(updatedBall).toEqual( { "some": "suggested ball state" });
+        expect(updatedBall).toEqual( { collisionSurface:'PADDLE', position: {});
+      });
+      
+      it('returns the collision surface as a collision surface', function(){
+        var collisionSurfaces = ballKinematicsUpdater.update(ball,  stage, paddle).collisionSurfaces;
+        expect(collisionSurfaces).toEqual(['PADDLE']);
       });
     });
   });

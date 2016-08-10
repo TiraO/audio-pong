@@ -1,13 +1,12 @@
 var DebugRenderer = function(){
-  var pixiStage, graphics, renderer;
+  var pixiStage, graphics, renderer, scoreText;
   this.init = function(){
      renderer = PIXI.autoDetectRenderer(800, 600, { antialias: true });
     document.body.appendChild(renderer.view);
     pixiStage = new PIXI.Container();
     graphics = new PIXI.Graphics();
-
-   
     pixiStage.addChild(graphics);
+
     renderer.render(pixiStage);
   };
   
@@ -19,6 +18,7 @@ var DebugRenderer = function(){
     this.renderBall(ball);
     this.renderBallSound(stage, ball);
     this.renderPaddle(paddle);
+    this.renderScore(singletonContext.playerScore);
     
     graphics.endFill();
     renderer.render(pixiStage);
@@ -56,4 +56,13 @@ var DebugRenderer = function(){
       graphics.lineTo(ball.position.x + ball.normal.x * 100, ball.position.y + ball.normal.y * 100);
     }
   };
+  
+  this.renderScore = function(score) {
+    if(scoreText){
+      scoreText.destroy();
+    }
+    scoreText = new PIXI.Text(score,{font : '24px Arial', fill : 0xff1010, align : 'center'});
+
+    graphics.addChild(scoreText);
+  }
 }

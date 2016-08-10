@@ -6,10 +6,11 @@
   "scripts": {
     "test": "jasmine"
   },
-  "author": "",
+  "author": "Tira Odhner",
   "license": "ISC",
   "dependencies": {
-    "pixi.js": "git+https://github.com/pixijs/pixi.js.git"
+    "pixi.js": "git+https://github.com/pixijs/pixi.js.git",
+    "underscore": "^1.8.3"
   },
   "devDependencies": {
     "grunt": "^0.4.5",
@@ -17,5 +18,17 @@
     "grunt-contrib-watch": "^1.0.0",
     "grunt-exec": "^0.4.6",
     "grunt-include-source": "^0.7.1"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TiraO/audio-pong.git"
+  },
+  "keywords": [
+    "audio",
+    "pong"
+  ],
+  "bugs": {
+    "url": "https://github.com/TiraO/audio-pong/issues"
+  },
+  "homepage": "https://github.com/TiraO/audio-pong#readme"
 }
