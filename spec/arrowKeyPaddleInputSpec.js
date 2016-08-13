@@ -14,13 +14,13 @@ describe("ArrowKeyPaddleInput", function(){
   });
 
   describe("after the user presses the right arrow key", function(){
-    describe("every 15ms", function(){
-      beforeEach(function(){    
+    beforeEach(function(){    
         var keyboardEvent = new KeyboardEvent("keydown", { code: "ArrowRight"});
       
         document.onkeydown(keyboardEvent); 
-      });
-      
+    });
+    
+    describe("every 15ms", function(){  
       it("moves the paddle right", function(){
         spyOn(paddleController, "moveRight");
         
@@ -34,17 +34,9 @@ describe("ArrowKeyPaddleInput", function(){
     });
     
     describe("when the user releases the right arrow key again", function(){
-      var rightKeydownEvent;
-      beforeEach(function(){
-        rightKeydownEvent = new KeyboardEvent("keydown", { code: "ArrowRight"});
-      
-        document.onkeydown(rightKeydownEvent);
-        jasmine.clock().tick(30);
-      });
-      
       it("stops moving the paddle", function(){
 
-        spyOn(paddleController, "moveRight");  document.onkeydown(rightKeydownEvent);
+        spyOn(paddleController, "moveRight");
         
         document.onkeyup(new KeyboardEvent("keyup", { code: "ArrowRight"}));
         jasmine.clock().tick(15);
@@ -52,16 +44,28 @@ describe("ArrowKeyPaddleInput", function(){
         expect(paddleController.moveRight).not.toHaveBeenCalled();
       });
     });
+    
+    describe("when the user releases the left key", function() {
+    
+      it("does not stop moving the paddle", function() {
+        spyOn(paddleController, "moveRight");
+        
+        document.onkeyup(new KeyboardEvent("keyup", { code: "ArrowLeft"}));
+        jasmine.clock().tick(15);
+        
+        expect(paddleController.moveRight).toHaveBeenCalled();
+      });
+    })
   });
 
   describe("after the user presses the left arrow key", function() {
-    describe("every 15ms", function() {
-       beforeEach(function(){    
+    beforeEach(function(){    
         var keyboardEvent = new KeyboardEvent("keydown", { code: "ArrowLeft"});
       
         document.onkeydown(keyboardEvent); 
-      });
-      
+    });
+    
+    describe("every 15ms", function() {
       it("moves the paddle left", function(){
         spyOn(paddleController, "moveLeft");
         
@@ -89,7 +93,7 @@ describe("ArrowKeyPaddleInput", function(){
       });
     });
     
-    xdescribe("when the user releases a different key", function() {
+    describe("when the user releases the arrowRight key", function() {
       beforeEach(function(){
         jasmine.clock().tick(30);
       });
