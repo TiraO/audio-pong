@@ -4,7 +4,10 @@ var BallKinematicsUpdater = function(options){
     options = options || {};
   var wallCollisionDetector = options.wallCollisionDetector || singletonContext.wallCollisionDetector;
   var paddleCollisionDetector = options.paddleCollisionDetector || singletonContext.paddleCollisionDetector;
-  
+    if(ball.isStuckToPaddle()){
+      return { ball: ball, collisionSurfaces: []};
+    }
+    
     var updatedBall = {
       position:
         {

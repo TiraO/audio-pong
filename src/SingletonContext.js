@@ -4,15 +4,13 @@ var SingletonContext = function(){
   this.paddleCollisionDetector = new PaddleCollisionDetector();
   this.stage = { width: 500, height: 500 };
   this.scoreUpdater = new ScoreUpdater();
+  this.ball = ball = new Ball();
   
   this.arrowControlledPaddle = new Paddle({stage: this.stage});
-  this.arrowPaddleController = new PaddleController({paddle: this.arrowControlledPaddle});
+  this.arrowPaddleController = new PaddleController({paddle: this.arrowControlledPaddle, ball: ball});
   this.arrowKeyPaddleInput = new ArrowKeyPaddleInput({paddleController: this.arrowPaddleController});
   
-  this.ball = ball = {
-    position: {x:0, y:0},
-    velocity: {x: 10, y:20}
-  };
+  
   this.playerScore = 0;
   
   this.audioContext =  window.acx = window.acx || new AudioContext();

@@ -9,6 +9,7 @@ describe("ScoreUpdater", function(){
         scoreUpdater.update(['LEFT_WALL', 'RIGHT_WALL']);
         expect(singletonContext.playerScore).toBe(0);
     });
+    
     describe("when there is a collision with the paddle", function(){
       it("increments the player's score by 1", function(){
         singletonContext.playerScore = 1;

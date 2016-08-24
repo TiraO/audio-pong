@@ -3,8 +3,9 @@ var GameRunner = function(){
     var scoreUpdater = singletonContext.scoreUpdater;
     var ballKinematicsUpdater = singletonContext.ballKinematicsUpdater;
     var kinematicsResult = ballKinematicsUpdater.update(singletonContext.ball, singletonContext.stage, singletonContext.arrowControlledPaddle);
-    singletonContext.ball = kinematicsResult.ball;
+
+    singletonContext.ball.setKinematics(kinematicsResult.ball);
     
-     scoreUpdater.update(kinematicsResult.collisionSurfaces);
+    scoreUpdater.update(kinematicsResult.collisionSurfaces);
   };
 };

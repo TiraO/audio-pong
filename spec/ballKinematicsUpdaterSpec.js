@@ -13,10 +13,10 @@ describe("BallKinematicsUpdater", function(){
   describe("update", function(){
     var ball, stage, paddle;
     beforeEach(function(){
-      ball = {
+      ball = new Ball({
         position: {x: 5, y: 11},
         velocity: {x: 10, y: 9}
-      };
+      });
       
       stage = {
         width: 500,
@@ -61,12 +61,26 @@ describe("BallKinematicsUpdater", function(){
       
       it("returns that collision as the new ball", function(){
         var updatedBall = ballKinematicsUpdater.update(ball,  stage, paddle).ball;
-        expect(updatedBall).toEqual( { collisionSurface:'PADDLE', position: {});
+        expect(updatedBall).toEqual( { collisionSurface:'PADDLE', position: {}});
       });
       
       it('returns the collision surface as a collision surface', function(){
         var collisionSurfaces = ballKinematicsUpdater.update(ball,  stage, paddle).collisionSurfaces;
         expect(collisionSurfaces).toEqual(['PADDLE']);
+      });
+    });
+    
+    describe("when the ball is stuck to the paddle", function(){
+      beforeEach(function(){
+        ball.stickToPaddle();
+      });
+      
+      it("does not update the ball kinematics", function(){
+        var updatedBall = ballKinematicsUpdater.update(ball,  stage, paddle).ball;
+        expect(updatedBall.position.x).toEqual(5);
+        expect(updatedBall.position.y).toEqual(11);
+        expect(updatedBall.velocity.x).toEqual(10);
+        expect(updatedBall.velocity.y).toEqual(9);
       });
     });
   });

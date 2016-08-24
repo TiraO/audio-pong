@@ -14,7 +14,7 @@
     var stage = singletonContext.stage;
     var paddle = singletonContext.arrowControlledPaddle;
     renderer.render(stage, ball, paddle);
-    requestAnimationFrame(render);
+//    requestAnimationFrame(render);
   };
   
   document.onreadystatechange = function(event){
@@ -23,5 +23,6 @@
       requestAnimationFrame(render);
 //      requestAnimationFrame(rupdate);
       var interval = window.setInterval(update, 50);
+      var interval2 = window.setInterval(render, 80);
   }};
 })();
