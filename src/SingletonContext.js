@@ -5,15 +5,20 @@ var SingletonContext = function(){
   this.stage = { width: 500, height: 500 };
   this.scoreUpdater = new ScoreUpdater();
   this.ball = ball = new Ball();
+  this.eventBus = new EventBus();
   
   this.arrowControlledPaddle = new Paddle({stage: this.stage});
+  
+  this.ballController = new BallController({ball: ball, paddle: this.arrowControlledPaddle});
+  this.spacebarBallInput = new SpacebarBallInput({ballController: this.ballController, eventBus: this.eventBus});
+  
   this.arrowPaddleController = new PaddleController({paddle: this.arrowControlledPaddle, ball: ball});
-  this.arrowKeyPaddleInput = new ArrowKeyPaddleInput({paddleController: this.arrowPaddleController});
+  this.arrowKeyPaddleInput = new ArrowKeyPaddleInput({paddleController: this.arrowPaddleController, eventBus: this.eventBus});
   
   
   this.playerScore = 0;
   
-  this.audioContext =  window.acx = window.acx || new AudioContext();
+  this.audioContext =  window.acx = window.acx || (window.AudioContext? new AudioContext(): new webkitAudioContext());
   this.audioPanner = this.audioContext.createStereoPanner();
   this.audioRenderer = new AudioRenderer();
   

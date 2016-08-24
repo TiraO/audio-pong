@@ -31,7 +31,7 @@ var DebugRenderer = function(){
   };
   
   this.renderBallSound = function(stage, ball){
-     var audioRenderer = singletonContext.audioRenderer;
+    var audioRenderer = singletonContext.audioRenderer;
     audioRenderer.render(stage, ball);
   };
   

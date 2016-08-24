@@ -1,6 +1,8 @@
 (function(){
   window.singletonContext = new SingletonContext();
  
+  singletonContext.ballController.stickBallToPaddle();
+  
   var renderer = new DebugRenderer();
   var update = function(){
     singletonContext.gameRunner.runStep();

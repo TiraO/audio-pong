@@ -1,5 +1,6 @@
 var ArrowKeyPaddleInput = function(options){
   var paddleController = options.paddleController;
+  var eventBus = options.eventBus;
   var ControlStates = { NONE: 'none', RIGHT: 'right', LEFT: 'left' }
   var controlState = ControlStates.NONE;
   var inputStates = {
@@ -17,15 +18,15 @@ var ArrowKeyPaddleInput = function(options){
   var bindInput = function(){
     setInterval(movePaddle, 15);
     
-    document.onkeydown = function(keyboardEvent){
-      if(keyboardEvent.code == "ArrowRight"){
-        inputStates.right = true;
-        controlState = ControlStates.RIGHT;
-      } else if(keyboardEvent.code == "ArrowLeft") {
-        inputStates.left = true;
-        controlState = ControlStates.LEFT;
-      }
-    };
+    eventBus.listenForKeydown("ArrowRight", function(){
+      inputStates.right = true;
+      controlState = ControlStates.RIGHT;
+    });
+    
+    eventBus.listenForKeydown("ArrowLeft", function(){
+      inputStates.left = true;
+      controlState = ControlStates.LEFT;
+    });
     
     document.onkeyup = function(keyboardEvent){
       if(keyboardEvent.code == "ArrowLeft"){

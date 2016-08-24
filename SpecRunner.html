@@ -17,33 +17,40 @@
   <script type="text/javascript" src="/templates.js"></script>
 
   <!-- include source files here... -->
-  <script src="src/ArrowKeyPaddleInput.js"></script>
-  <script src="src/PaddleCollisionDetector.js"></script>
-  <script src="src/PaddleController.js"></script>
   <script src="src/ScoreUpdater.js"></script>
   <script src="src/SingletonContext.js"></script>
-  <script src="src/Stage.js"></script>
-  <script src="src/WallCollisionDetector.js"></script>
-  <script src="src/audioRenderer.js"></script>
-  <script src="src/ballKinematicsUpdater.js"></script>
-  <script src="src/debugRenderer.js"></script>
   <script src="src/gameRunner.js"></script>
+  <script src="src/inputControl/ArrowKeyPaddleInput.js"></script>
+  <script src="src/inputControl/BallController.js"></script>
+  <script src="src/inputControl/EventBus.js"></script>
+  <script src="src/inputControl/PaddleController.js"></script>
+  <script src="src/inputControl/SpacebarBallInput.js"></script>
   <script src="src/models/Ball.js"></script>
+  <script src="src/models/InputIdentifiers.js"></script>
   <script src="src/models/Paddle.js"></script>
+  <script src="src/models/Stage.js"></script>
+  <script src="src/physics/PaddleCollisionDetector.js"></script>
+  <script src="src/physics/WallCollisionDetector.js"></script>
+  <script src="src/physics/ballKinematicsUpdater.js"></script>
+  <script src="src/rendering/audioRenderer.js"></script>
+  <script src="src/rendering/debugRenderer.js"></script>
   
   <link rel="stylesheet" type="text/css" href="src/css/styles.css">
 
   <!-- include spec files here... -->
-  <script src="spec/PaddleControllerSpec.js"></script>
-  <script src="spec/arrowKeyPaddleInputSpec.js"></script>
-  <script src="spec/audioRendererSpec.js"></script>
-  <script src="spec/ballKinematicsUpdaterSpec.js"></script>
-  <script src="spec/ballSpec.js"></script>
   <script src="spec/gameRunnerSpec.js"></script>
   <script src="spec/helpers/specHelpers.js"></script>
-  <script src="spec/paddleCollisionDetectorSpec.js"></script>
+  <script src="spec/inputControl/PaddleControllerSpec.js"></script>
+  <script src="spec/inputControl/arrowKeyPaddleInputSpec.js"></script>
+  <script src="spec/inputControl/ballControllerSpec.js"></script>
+  <script src="spec/inputControl/eventBusSpec.js"></script>
+  <script src="spec/inputControl/spacebarBallInputSpec.js"></script>
+  <script src="spec/models/ballSpec.js"></script>
+  <script src="spec/physics/ballKinematicsUpdaterSpec.js"></script>
+  <script src="spec/physics/paddleCollisionDetectorSpec.js"></script>
+  <script src="spec/physics/wallCollisionDetectorSpec.js"></script>
+  <script src="spec/rendering/audioRendererSpec.js"></script>
   <script src="spec/scoreUpdaterSpec.js"></script>
-  <script src="spec/wallCollisionDetectorSpec.js"></script>
 </head>
 
 <body>

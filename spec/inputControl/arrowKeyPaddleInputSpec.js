@@ -10,7 +10,7 @@ describe("ArrowKeyPaddleInput", function(){
   
   beforeEach(function(){
     paddleController = new PaddleController({paddle: new Paddle()});
-    arrowKeyPaddleInput = new ArrowKeyPaddleInput({paddleController: paddleController});
+    arrowKeyPaddleInput = new ArrowKeyPaddleInput({paddleController: paddleController, eventBus: new EventBus()});
   });
 
   describe("after the user presses the right arrow key", function(){
