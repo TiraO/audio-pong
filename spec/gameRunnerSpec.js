@@ -31,7 +31,22 @@ describe("GameRunner", function(){
       
       it("updates the score", function(){
         spyOn(singletonContext.scoreUpdater, 'update');
-       gameRunner.runStep(); expect(singletonContext.scoreUpdater.update).toHaveBeenCalledWith(['LEFT_WALL', 'PADDLE']);
+        gameRunner.runStep();
+        expect(singletonContext.scoreUpdater.update).toHaveBeenCalledWith(['LEFT_WALL', 'PADDLE']);
+      });
+    });
+    
+    describe('when the ball hits the bottom wall', function(){
+      var ballController;
+      beforeEach(function(){
+        ballController = singletonContext.ballController;
+        spyOn(singletonContext.ballKinematicsUpdater, 'update').and.returnValue({ ball: {}, collisionSurfaces: ['BOTTOM_WALL']});
+      });
+      
+      it('sticks the ball to the paddle', function(){
+        spyOn(ballController, 'stickBallToPaddle');
+        gameRunner.runStep();
+        expect(ballController.stickBallToPaddle).toHaveBeenCalled();
       });
     });
   });
