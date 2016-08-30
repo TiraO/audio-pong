@@ -19,7 +19,7 @@ var DebugRenderer = function(){
     this.renderBallSound(stage, ball);
     this.renderPaddle(paddle);
     this.renderScore(singletonContext.playerScore);
-    
+    this.renderLives(singletonContext.lives);
     graphics.endFill();
     renderer.render(pixiStage);
   };
@@ -40,12 +40,14 @@ var DebugRenderer = function(){
     graphics.beginFill(0xFF700B, 1);
     graphics.drawRect(0, ball.position.y - 4, stage.width, 5);
   }
+  
   this.renderPaddle = function(paddle){
     graphics.lineStyle(2, 0x0FF0FF, 1);
     graphics.beginFill(0xFF700B, 1);
     graphics.drawRect(paddle.bottomLeft.x, paddle.bottomLeft.y - paddle.height, paddle.width, paddle.height);
 
   };
+  
   this.renderBall = function(ball){
     var radius = 2;
     graphics.lineStyle(2, 0xFF00FF, 1);
@@ -55,6 +57,16 @@ var DebugRenderer = function(){
       graphics.moveTo(ball.position.x, ball.position.y);
       graphics.lineTo(ball.position.x + ball.normal.x * 100, ball.position.y + ball.normal.y * 100);
     }
+  };
+  
+  this.renderLives = function(lives){
+    _.each(_.range(lives), function(i){
+      var lifeBall = { 
+        position: {x: 100 + 10*i, y: 100}
+      };
+      
+      this.renderBall(lifeBall);
+    }, this);
   };
   
   this.renderScore = function(score) {

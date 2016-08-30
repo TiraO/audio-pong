@@ -8,8 +8,21 @@ var GameRunner = function(){
     
     scoreUpdater.update(kinematicsResult.collisionSurfaces);
     
-    if(_.contains(kinematicsResult.collisionSurfaces, 'BOTTOM_WALL')){
+    if(this.didHitBottom(kinematicsResult)){
+      singletonContext.lives--;
       singletonContext.ballController.stickBallToPaddle();
+      if(singletonContext.lives == 0){
+        this.resetGameState();
+      }
     }
+  };
+  
+  this.resetGameState = function(){
+    singletonContext.lives = 3;
+    singletonContext.playerScore = 0;
+  };
+  
+  this.didHitBottom = function(kinematicsResult){
+    return _.contains(kinematicsResult.collisionSurfaces, 'BOTTOM_WALL')
   };
 };
