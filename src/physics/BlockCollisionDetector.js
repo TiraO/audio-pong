@@ -10,7 +10,7 @@ var BlockCollisionDetector = function(){
       
       var collisionResult = { collisionSurface: 'BLOCK', ball: { position:{}, velocity:{} }};
       
-      if(this.ballIsLeftOfBlock(ball, block)){
+      if(geometryHelper.pointIsLeftOfRectangle(ball.position, block)){
         var leftIntersectionResult = geometryHelper.findLineIntersection(bottomLeft, topLeft, ball.position, updatedPosition);
         if(leftIntersectionResult.segmentsIntersect){
           collisionResult.ball = {
@@ -21,8 +21,8 @@ var BlockCollisionDetector = function(){
         }
       }
       
-      if( this.ballIsRightOfBlock(ball, block)){
-        var rightIntersectionResult = geometryHelper.findLineIntersection(bottomRight, bottomRight, ball.position, updatedPosition);
+      if( geometryHelper.pointIsRightOfRectangle(ball.position, block)){
+        var rightIntersectionResult = geometryHelper.findLineIntersection(bottomRight, topRight, ball.position, updatedPosition);
         if(rightIntersectionResult.segmentsIntersect){
           collisionResult.ball = {
             position: { x: rightIntersectionResult.x, y: rightIntersectionResult.y },
@@ -32,7 +32,7 @@ var BlockCollisionDetector = function(){
         }
       }
       
-      if(this.ballIsAboveBlock(ball, block)){
+      if(geometryHelper.pointIsAboveRectangle(ball.position, block)){
         var topIntersectionResult = geometryHelper.findLineIntersection(topLeft, topRight, ball.position, updatedPosition);
         if(topIntersectionResult.segmentsIntersect){
           collisionResult.ball = {
@@ -43,7 +43,7 @@ var BlockCollisionDetector = function(){
         }
       }
       
-      if(this.ballIsBelowBlock(ball, block)){
+      if(geometryHelper.pointIsBelowRectangle(ball.position, block)){
         var bottomIntersectionResult = geometryHelper.findLineIntersection(bottomLeft, bottomRight, ball.position, updatedPosition);
         if(bottomIntersectionResult.segmentsIntersect){
           collisionResult.ball = {
@@ -56,22 +56,6 @@ var BlockCollisionDetector = function(){
     } else {
       return null;
     }
-  };
-  
-  this.ballIsAboveBlock = function(ball, block){
-    return ball.position.y < block.bottomLeft.y - block.height;
-  };
-  
-  this.ballIsBelowBlock = function(ball, block){
-    return ball.position.y > block.bottomLeft.y;
-  };
-  
-  this.ballIsLeftOfBlock = function(ball, block){
-    return ball.position.x < block.bottomLeft.x;
-  };
-  
-  this.ballIsRightOfBlock = function(ball, block){
-    return ball.position.x > block.bottomLeft.x + block.width;
   };
   
   this.reverseX = function(vector){

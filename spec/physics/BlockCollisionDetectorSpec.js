@@ -27,11 +27,24 @@ describe("BlockCollisionDetector", function(){
         expect(collision.collisionSurface).toBe('BLOCK');
       });
       
+
       describe("when the ball hits the top of the block", function(){
+        var geometryHelper;
         beforeEach(function(){
-          ball.position = { x: 195, y: 90 }; // (5, 5) from top left
           ball.velocity = { x: 9, y: 6 };
           
+          geometryHelper = singletonContext.geometryHelper;
+          spyOn(geometryHelper, 'pointIsInsideRectangle').and.returnValue(true);
+          spyOn(geometryHelper, 'pointIsAboveRectangle').and.returnValue(true);
+          spyOn(geometryHelper, 'pointIsBelowRectangle').and.returnValue(false);
+          spyOn(geometryHelper, 'pointIsLeftOfRectangle').and.returnValue(false);
+          spyOn(geometryHelper, 'pointIsRightOfRectangle').and.returnValue(false);
+          spyOn(geometryHelper, 'findLineIntersection').and.returnValue({
+            segmentsIntersect: true,
+            x: 100,
+            y: 200
+          });
+
           collision = blockCollisionDetector.detectCollision(ball, block);
         });
         
@@ -43,62 +56,119 @@ describe("BlockCollisionDetector", function(){
           expect(collision.ball.velocity.x).toBe(9);
         });
         
-        it("has an x position incremented by the x speed", function(){
-          expect(collision.ball.position.x).toBe(204);
-        });
-        
-        it("has a y position of the top of the block", function(){
-          expect(collision.ball.position.y).toBe(95);
+        it("is positioned at the intersection with the top of the block", function(){
+          expect(collision.ball.position).toEqual({ x: 100, y: 200 });
+          expect(geometryHelper.findLineIntersection).toHaveBeenCalledWith(
+            {x: 200, y: 95}, {x: 210, y: 95}, { x: 202, y: 90 }, { x: 211, y: 96 }
+          );
         });
       });
       
       describe("when the ball hits the bottom of the block", function(){
+        var geometryHelper;
         beforeEach(function(){
-          ball.position = { x: 195, y: 105 }; // (5, -5) from bottom left
-          ball.velocity = { x: 9, y: -6 };
+          ball.velocity = { x: 9, y: 6 };
           
+          geometryHelper = singletonContext.geometryHelper;
+          spyOn(geometryHelper, 'pointIsInsideRectangle').and.returnValue(true);
+          spyOn(geometryHelper, 'pointIsAboveRectangle').and.returnValue(false);
+          spyOn(geometryHelper, 'pointIsBelowRectangle').and.returnValue(true);
+          spyOn(geometryHelper, 'pointIsLeftOfRectangle').and.returnValue(false);
+          spyOn(geometryHelper, 'pointIsRightOfRectangle').and.returnValue(false);
+          spyOn(geometryHelper, 'findLineIntersection').and.returnValue({
+            segmentsIntersect: true,
+            x: 100,
+            y: 200
+          });
+
           collision = blockCollisionDetector.detectCollision(ball, block);
         });
         
         it("has a reversed y speed", function(){
-          expect(collision.ball.velocity.y).toBe(6);
+          expect(collision.ball.velocity.y).toBe(-6);
         });
         
         it("has the original x speed", function(){
           expect(collision.ball.velocity.x).toBe(9);
         });
         
-        it("has an x position incremented by the x speed", function(){
-          expect(collision.ball.position.x).toBe(204);
-        });
-        
-        it("has a y position of the bottom of the block", function(){
-          expect(collision.ball.position.y).toBe(100);
+        it("is positioned at the intersection with the bottom of the block", function(){
+          expect(collision.ball.position).toEqual({ x: 100, y: 200 });
+          expect(geometryHelper.findLineIntersection).toHaveBeenCalledWith(
+            {x: 200, y: 100}, {x: 210, y: 100}, { x: 202, y: 90 }, { x: 211, y: 96 }
+          );
         });
       });
       
       describe("when the ball hits the left side of the block", function(){
+        var geometryHelper;
         beforeEach(function(){
-          ball.position = { x: 195, y: 105 }; // (5, -5) from bottom left
-          ball.velocity = { x: 6, y: -9 };
+          ball.velocity = { x: 9, y: 6 };
           
+          geometryHelper = singletonContext.geometryHelper;
+          spyOn(geometryHelper, 'pointIsInsideRectangle').and.returnValue(true);
+          spyOn(geometryHelper, 'pointIsAboveRectangle').and.returnValue(false);
+          spyOn(geometryHelper, 'pointIsBelowRectangle').and.returnValue(false);
+          spyOn(geometryHelper, 'pointIsLeftOfRectangle').and.returnValue(true);
+          spyOn(geometryHelper, 'pointIsRightOfRectangle').and.returnValue(false);
+          spyOn(geometryHelper, 'findLineIntersection').and.returnValue({
+            segmentsIntersect: true,
+            x: 100,
+            y: 200
+          });
+
           collision = blockCollisionDetector.detectCollision(ball, block);
         });
         
         it("has a reversed x speed", function(){
-          expect(collision.ball.velocity.x).toBe(-6);
+          expect(collision.ball.velocity.x).toBe(-9);
         });
         
         it("has the original y speed", function(){
-          expect(collision.ball.velocity.y).toBe(-9);
+          expect(collision.ball.velocity.y).toBe(6);
         });
         
-        it("has a y position incremented by the y speed", function(){
-          expect(collision.ball.position.y).toBe(96);
+        it("is positioned at the intersection with the left of the block", function(){
+          expect(collision.ball.position).toEqual({ x: 100, y: 200 });
+          expect(geometryHelper.findLineIntersection).toHaveBeenCalledWith(
+            {x: 200, y: 100}, {x: 200, y: 95}, { x: 202, y: 90 }, { x: 211, y: 96 }
+          );
+        });
+      });
+      
+      describe("when the ball hits the right side of the block", function(){
+        var geometryHelper;
+        beforeEach(function(){
+          ball.velocity = { x: 9, y: 6 };
+          
+          geometryHelper = singletonContext.geometryHelper;
+          spyOn(geometryHelper, 'pointIsInsideRectangle').and.returnValue(true);
+          spyOn(geometryHelper, 'pointIsAboveRectangle').and.returnValue(false);
+          spyOn(geometryHelper, 'pointIsBelowRectangle').and.returnValue(false);
+          spyOn(geometryHelper, 'pointIsLeftOfRectangle').and.returnValue(false);
+          spyOn(geometryHelper, 'pointIsRightOfRectangle').and.returnValue(true);
+          spyOn(geometryHelper, 'findLineIntersection').and.returnValue({
+            segmentsIntersect: true,
+            x: 100,
+            y: 200
+          });
+
+          collision = blockCollisionDetector.detectCollision(ball, block);
         });
         
-        it("has an x position of the left of the block", function(){
-          expect(collision.ball.position.x).toBe(200);
+        it("has a reversed x speed", function(){
+          expect(collision.ball.velocity.x).toBe(-9);
+        });
+        
+        it("has the original y speed", function(){
+          expect(collision.ball.velocity.y).toBe(6);
+        });
+        
+        it("is positioned at the intersection with the right of the block", function(){
+          expect(collision.ball.position).toEqual({ x: 100, y: 200 });
+          expect(geometryHelper.findLineIntersection).toHaveBeenCalledWith(
+            {x: 210, y: 100}, {x: 210, y: 95}, { x: 202, y: 90 }, { x: 211, y: 96 }
+          );
         });
       });
     });

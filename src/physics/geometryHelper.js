@@ -10,6 +10,22 @@ var GeometryHelper = function(){
     return { x: vector1.x + vector2.x, y: vector1.y + vector2.y };
   };
   
+  this.pointIsAboveRectangle = function(point, rectangle){
+    return point.y < rectangle.bottomLeft.y - rectangle.height;
+  };
+  
+  this.pointIsBelowRectangle = function(point, rectangle){
+    return point.y > rectangle.bottomLeft.y;
+  };
+  
+  this.pointIsLeftOfRectangle = function(point, rectangle){
+    return point.x < rectangle.bottomLeft.x;
+  };
+  
+  this.pointIsRightOfRectangle = function(point, rectangle){
+    return point.x > rectangle.bottomLeft.x + rectangle.width;
+  };
+  
   this.findLineIntersection = function(line1Start, line1End, line2Start, line2End) {
     // source: http://jsfiddle.net/justin_c_rounds/Gd2S2/
     
