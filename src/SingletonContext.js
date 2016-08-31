@@ -2,6 +2,7 @@ var SingletonContext = function(){
   this.ballKinematicsUpdater = new BallKinematicsUpdater();
   this.wallCollisionDetector = new WallCollisionDetector();
   this.paddleCollisionDetector = new PaddleCollisionDetector();
+  this.geometryHelper = new GeometryHelper();
   this.stage = { width: 500, height: 500 };
   this.scoreUpdater = new ScoreUpdater();
   this.ball = ball = new Ball();

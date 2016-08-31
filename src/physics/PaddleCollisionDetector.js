@@ -1,5 +1,6 @@
 var PaddleCollisionDetector = function(){
   this.detectCollision = function(ball, paddle){
+    var geometryHelper = singletonContext.geometryHelper;
     var updatedBall = {
       position: {
         x: ball.position.x + ball.velocity.x, 
@@ -8,12 +9,8 @@ var PaddleCollisionDetector = function(){
       velocity: ball.velocity
     };
     
-    if(updatedBall.position.x > paddle.bottomLeft.x
-       && updatedBall.position.y < paddle.bottomLeft.y
-       && updatedBall.position.x < paddle.bottomLeft.x + paddle.width 
-       && updatedBall.position.y > paddle.bottomLeft.y - paddle.height){
+    if(geometryHelper.pointIsInsideRectangle(updatedBall.position, paddle)){
 
-      
       var hitLocationProportion = (updatedBall.position.x - paddle.bottomLeft.x - paddle.width/2)/paddle.width;
               
       var normalize = function(vector){

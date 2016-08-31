@@ -96,6 +96,7 @@ describe("PaddleCollisionDetector", function(){
          expect(paddleCollisionDetector.detectCollision(ball, paddle)).toBeNull();
       });
     });
+
     describe("when the ball will be above the paddle", function(){
       beforeEach(function(){
         ball.position.y = 0;
@@ -105,8 +106,8 @@ describe("PaddleCollisionDetector", function(){
          expect(paddleCollisionDetector.detectCollision(ball, paddle)).toBeNull();
       });
     });
-    
-     describe("when the ball will be below paddle", function(){
+
+    describe("when the ball will be below paddle", function(){
       beforeEach(function(){
         ball.position.y = 650;
       });
