@@ -12,7 +12,7 @@ describe("BallKinematicsUpdater", function(){
       wallCollisionDetector: wallCollisionDetector, 
       paddleCollisionDetector: paddleCollisionDetector,
       blockCollisionDetector: blockCollisionDetector,
-      block: new Block()
+      blocks: [new Block()]
     });
   });
   

@@ -20,7 +20,7 @@ var DebugRenderer = function(){
     this.renderPaddle(paddle);
     this.renderScore(singletonContext.playerScore);
     this.renderLives(singletonContext.lives);
-    this.renderBlock(singletonContext.block);
+    this.renderBlocks(singletonContext.blocks);
     
     graphics.endFill();
     renderer.render(pixiStage);
@@ -48,6 +48,10 @@ var DebugRenderer = function(){
     graphics.beginFill(0xFF700B, 1);
     graphics.drawRect(paddle.bottomLeft.x, paddle.bottomLeft.y - paddle.height, paddle.width, paddle.height);
 
+  };
+  
+  this.renderBlocks = function(blocks){
+    _.each(blocks, this.renderBlock);
   };
   
   this.renderBlock = function(block){

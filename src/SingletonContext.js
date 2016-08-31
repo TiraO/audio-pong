@@ -7,7 +7,7 @@ var SingletonContext = function(){
   this.stage = { width: 500, height: 500 };
   this.scoreUpdater = new ScoreUpdater();
   this.ball = ball = new Ball();
-  this.block = new Block();
+  this.blocks = [new Block(), new Block()];
   this.lives = 3;
   this.eventBus = new EventBus();
   

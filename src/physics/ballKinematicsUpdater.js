@@ -5,7 +5,7 @@ var BallKinematicsUpdater = function(options){
     var wallCollisionDetector = options.wallCollisionDetector || singletonContext.wallCollisionDetector;
     var paddleCollisionDetector = options.paddleCollisionDetector || singletonContext.paddleCollisionDetector;
     var blockCollisionDetector = options.blockCollisionDetector || singletonContext.blockCollisionDetector;
-    var block = options.block || singletonContext.block;
+    var blocks = options.blocks || singletonContext.blocks;
     
     if(ball.isStuckToPaddle()){
       return { ball: ball, collisionSurfaces: []};
@@ -21,14 +21,16 @@ var BallKinematicsUpdater = function(options){
     };
     var collisions = wallCollisionDetector.detectCollisions(ball, stage);
     var paddleCollision = paddleCollisionDetector.detectCollision(ball, paddle);
-    var blockCollision = blockCollisionDetector.detectCollision(ball, block);
+    var blockCollisions = _.compact(_.map(blocks, function(block){
+      return blockCollisionDetector.detectCollision(ball, block);
+    }));
 
-    if(paddleCollision){
-      collisions.push(paddleCollision);
+    if(blockCollisions){
+      collisions = collisions.concat(blockCollisions);
     }
     
-    if(blockCollision){
-      collisions.push(blockCollision);
+    if(paddleCollision){
+      collisions.push(paddleCollision);
     }
     
     var result = {
