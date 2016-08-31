@@ -13,10 +13,9 @@ var BlockCollisionDetector = function(){
       if(geometryHelper.pointIsLeftOfRectangle(ball.position, block)){
         var leftIntersectionResult = geometryHelper.findLineIntersection(bottomLeft, topLeft, ball.position, updatedPosition);
         if(leftIntersectionResult.segmentsIntersect){
-          collisionResult.ball = {
-            position: { x: leftIntersectionResult.x, y: leftIntersectionResult.y },
-            velocity: this.reverseX(ball.velocity)
-          };
+          collisionResult.position = { x: leftIntersectionResult.x, y: leftIntersectionResult.y };
+          collisionResult.velocity = this.reverseX(ball.velocity);
+          
           return collisionResult;
         }
       }
@@ -24,10 +23,8 @@ var BlockCollisionDetector = function(){
       if( geometryHelper.pointIsRightOfRectangle(ball.position, block)){
         var rightIntersectionResult = geometryHelper.findLineIntersection(bottomRight, topRight, ball.position, updatedPosition);
         if(rightIntersectionResult.segmentsIntersect){
-          collisionResult.ball = {
-            position: { x: rightIntersectionResult.x, y: rightIntersectionResult.y },
-            velocity: this.reverseX(ball.velocity)
-          };
+          collisionResult.position = { x: rightIntersectionResult.x, y: rightIntersectionResult.y };
+          collisionResult.velocity = this.reverseX(ball.velocity);
           return collisionResult;
         }
       }
@@ -35,10 +32,8 @@ var BlockCollisionDetector = function(){
       if(geometryHelper.pointIsAboveRectangle(ball.position, block)){
         var topIntersectionResult = geometryHelper.findLineIntersection(topLeft, topRight, ball.position, updatedPosition);
         if(topIntersectionResult.segmentsIntersect){
-          collisionResult.ball = {
-            position: { x: topIntersectionResult.x, y: topIntersectionResult.y },
-            velocity: this.reverseY(ball.velocity)
-          };
+          collisionResult.position = { x: topIntersectionResult.x, y: topIntersectionResult.y };
+          collisionResult.velocity = this.reverseY(ball.velocity);
           return collisionResult;
         }
       }
@@ -46,10 +41,8 @@ var BlockCollisionDetector = function(){
       if(geometryHelper.pointIsBelowRectangle(ball.position, block)){
         var bottomIntersectionResult = geometryHelper.findLineIntersection(bottomLeft, bottomRight, ball.position, updatedPosition);
         if(bottomIntersectionResult.segmentsIntersect){
-          collisionResult.ball = {
-            position: { x: bottomIntersectionResult.x, y: bottomIntersectionResult.y },
-            velocity: this.reverseY(ball.velocity)
-          };
+          collisionResult.position = { x: bottomIntersectionResult.x, y: bottomIntersectionResult.y };
+          collisionResult.velocity = this.reverseY(ball.velocity);
           return collisionResult;
         }
       }

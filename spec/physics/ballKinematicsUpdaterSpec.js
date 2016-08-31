@@ -1,13 +1,19 @@
 describe("BallKinematicsUpdater", function(){
-  var ballKinematicsUpdater, wallCollisionDetector, paddleCollisionDetector;
+  var ballKinematicsUpdater, wallCollisionDetector, paddleCollisionDetector, blockCollisionDetector;
   beforeEach(function(){
     wallCollisionDetector = new WallCollisionDetector();
     paddleCollisionDetector = new PaddleCollisionDetector();
+    blockCollisionDetector = new BlockCollisionDetector();
+    
     spyOn(wallCollisionDetector, "detectCollisions").and.returnValue([]);
     spyOn(paddleCollisionDetector, "detectCollision").and.returnValue(null);
+    spyOn(blockCollisionDetector, "detectCollision").and.returnValue(null);
     ballKinematicsUpdater = new BallKinematicsUpdater({
       wallCollisionDetector: wallCollisionDetector, 
-      paddleCollisionDetector: paddleCollisionDetector});
+      paddleCollisionDetector: paddleCollisionDetector,
+      blockCollisionDetector: blockCollisionDetector,
+      block: new Block()
+    });
   });
   
   describe("update", function(){
@@ -53,6 +59,7 @@ describe("BallKinematicsUpdater", function(){
       });
       
     });
+    
     describe("when there is a paddle collision", function(){
       beforeEach(function(){
         var someCollision = { collisionSurface:'PADDLE', position: {}};
@@ -67,6 +74,23 @@ describe("BallKinematicsUpdater", function(){
       it('returns the collision surface as a collision surface', function(){
         var collisionSurfaces = ballKinematicsUpdater.update(ball,  stage, paddle).collisionSurfaces;
         expect(collisionSurfaces).toEqual(['PADDLE']);
+      });
+    });
+    
+    describe("when there is a block collision", function(){
+      beforeEach(function(){
+        var someCollision = { collisionSurface:'BLOCK', position: {}};
+        blockCollisionDetector.detectCollision.and.returnValue(someCollision);
+      });
+      
+      it("returns that collision as the new ball", function(){
+        var updatedBall = ballKinematicsUpdater.update(ball,  stage, paddle).ball;
+        expect(updatedBall).toEqual( { collisionSurface:'BLOCK', position: {}});
+      });
+      
+      it('returns the collision surface as a collision surface', function(){
+        var collisionSurfaces = ballKinematicsUpdater.update(ball,  stage, paddle).collisionSurfaces;
+        expect(collisionSurfaces).toEqual(['BLOCK']);
       });
     });
     

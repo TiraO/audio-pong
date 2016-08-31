@@ -20,6 +20,8 @@ var DebugRenderer = function(){
     this.renderPaddle(paddle);
     this.renderScore(singletonContext.playerScore);
     this.renderLives(singletonContext.lives);
+    this.renderBlock(singletonContext.block);
+    
     graphics.endFill();
     renderer.render(pixiStage);
   };
@@ -45,6 +47,13 @@ var DebugRenderer = function(){
     graphics.lineStyle(2, 0x0FF0FF, 1);
     graphics.beginFill(0xFF700B, 1);
     graphics.drawRect(paddle.bottomLeft.x, paddle.bottomLeft.y - paddle.height, paddle.width, paddle.height);
+
+  };
+  
+  this.renderBlock = function(block){
+    graphics.lineStyle(2, 0x0FF0FF, 1);
+    graphics.beginFill(0xAA70B0, 1);
+    graphics.drawRect(block.bottomLeft.x, block.bottomLeft.y - block.height, block.width, block.height);
 
   };
   

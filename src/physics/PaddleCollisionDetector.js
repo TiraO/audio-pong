@@ -22,7 +22,7 @@ var PaddleCollisionDetector = function(){
         return normalized;
       };
       
-      var normal = normalize({ y: -20, x: hitLocationProportion*10});
+      var normal = normalize({ y: -20, x: hitLocationProportion*20});
       var incidenceNormalDot = ball.velocity.x*normal.x + ball.velocity.y*normal.y;
       var reflection = {
         x: -1*(2*incidenceNormalDot*normal.x - ball.velocity.x),

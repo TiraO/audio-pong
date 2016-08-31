@@ -49,15 +49,15 @@ describe("BlockCollisionDetector", function(){
         });
         
         it("has a reversed y speed", function(){
-          expect(collision.ball.velocity.y).toBe(-6);
+          expect(collision.velocity.y).toBe(-6);
         });
         
         it("has the original x speed", function(){
-          expect(collision.ball.velocity.x).toBe(9);
+          expect(collision.velocity.x).toBe(9);
         });
         
         it("is positioned at the intersection with the top of the block", function(){
-          expect(collision.ball.position).toEqual({ x: 100, y: 200 });
+          expect(collision.position).toEqual({ x: 100, y: 200 });
           expect(geometryHelper.findLineIntersection).toHaveBeenCalledWith(
             {x: 200, y: 95}, {x: 210, y: 95}, { x: 202, y: 90 }, { x: 211, y: 96 }
           );
@@ -85,15 +85,15 @@ describe("BlockCollisionDetector", function(){
         });
         
         it("has a reversed y speed", function(){
-          expect(collision.ball.velocity.y).toBe(-6);
+          expect(collision.velocity.y).toBe(-6);
         });
         
         it("has the original x speed", function(){
-          expect(collision.ball.velocity.x).toBe(9);
+          expect(collision.velocity.x).toBe(9);
         });
         
         it("is positioned at the intersection with the bottom of the block", function(){
-          expect(collision.ball.position).toEqual({ x: 100, y: 200 });
+          expect(collision.position).toEqual({ x: 100, y: 200 });
           expect(geometryHelper.findLineIntersection).toHaveBeenCalledWith(
             {x: 200, y: 100}, {x: 210, y: 100}, { x: 202, y: 90 }, { x: 211, y: 96 }
           );
@@ -121,15 +121,15 @@ describe("BlockCollisionDetector", function(){
         });
         
         it("has a reversed x speed", function(){
-          expect(collision.ball.velocity.x).toBe(-9);
+          expect(collision.velocity.x).toBe(-9);
         });
         
         it("has the original y speed", function(){
-          expect(collision.ball.velocity.y).toBe(6);
+          expect(collision.velocity.y).toBe(6);
         });
         
         it("is positioned at the intersection with the left of the block", function(){
-          expect(collision.ball.position).toEqual({ x: 100, y: 200 });
+          expect(collision.position).toEqual({ x: 100, y: 200 });
           expect(geometryHelper.findLineIntersection).toHaveBeenCalledWith(
             {x: 200, y: 100}, {x: 200, y: 95}, { x: 202, y: 90 }, { x: 211, y: 96 }
           );
@@ -157,15 +157,15 @@ describe("BlockCollisionDetector", function(){
         });
         
         it("has a reversed x speed", function(){
-          expect(collision.ball.velocity.x).toBe(-9);
+          expect(collision.velocity.x).toBe(-9);
         });
         
         it("has the original y speed", function(){
-          expect(collision.ball.velocity.y).toBe(6);
+          expect(collision.velocity.y).toBe(6);
         });
         
         it("is positioned at the intersection with the right of the block", function(){
-          expect(collision.ball.position).toEqual({ x: 100, y: 200 });
+          expect(collision.position).toEqual({ x: 100, y: 200 });
           expect(geometryHelper.findLineIntersection).toHaveBeenCalledWith(
             {x: 210, y: 100}, {x: 210, y: 95}, { x: 202, y: 90 }, { x: 211, y: 96 }
           );
