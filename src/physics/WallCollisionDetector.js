@@ -1,7 +1,7 @@
 var WallCollisionDetector = function(){
   this.detectCollisions = function(ball, stage){
     var collisions = [];
-    var updatedBall = {
+    var collision = {
       position:
       {
         x: ball.position.x + ball.velocity.x,
@@ -10,33 +10,33 @@ var WallCollisionDetector = function(){
       velocity: ball.velocity
     };
 
-    var ballHasStruckLeftWall = updatedBall.position.x < 0;
-    var ballHasStruckRightWall = updatedBall.position.x > stage.width;
-    var ballHasStruckUpperWall = updatedBall.position.y < 0;
-    var ballHasStruckLowerWall = updatedBall.position.y > stage.height;
+    var ballHasStruckLeftWall = collision.position.x < 0;
+    var ballHasStruckRightWall = collision.position.x > stage.width;
+    var ballHasStruckUpperWall = collision.position.y < 0;
+    var ballHasStruckLowerWall = collision.position.y > stage.height;
     
     if(ballHasStruckLeftWall) {
-      updatedBall.position.x = 0;
-      updatedBall.velocity.x *= -1;
-      updatedBall.collisionSurface = 'LEFT_WALL';
-      collisions.push(updatedBall);
+      collision.position.x = 0;
+      collision.velocity.x *= -1;
+      collision.collisionSurface = {type: 'LEFT_WALL'};
+      collisions.push(collision);
     } else if(ballHasStruckRightWall) {
-      updatedBall.position.x = stage.width;
-      updatedBall.velocity.x *= -1;
-      updatedBall.collisionSurface = 'RIGHT_WALL';
-      collisions.push(updatedBall);
+      collision.position.x = stage.width;
+      collision.velocity.x *= -1;
+      collision.collisionSurface = {type: 'RIGHT_WALL'};
+      collisions.push(collision);
     }
     
     if(ballHasStruckUpperWall){
-      updatedBall.position.y = 0;
-      updatedBall.velocity.y *= -1;
-      updatedBall.collisionSurface = 'TOP_WALL';
-      collisions.push(updatedBall);
+      collision.position.y = 0;
+      collision.velocity.y *= -1;
+      collision.collisionSurface = {type: 'TOP_WALL'};
+      collisions.push(collision);
     } else if(ballHasStruckLowerWall){
-      updatedBall.position.y = stage.height;
-      updatedBall.velocity.y *= -1;
-      updatedBall.collisionSurface = 'BOTTOM_WALL';
-      collisions.push(updatedBall);
+      collision.position.y = stage.height;
+      collision.velocity.y *= -1;
+      collision.collisionSurface = {type: 'BOTTOM_WALL'};
+      collisions.push(collision);
     }
     
     return collisions;

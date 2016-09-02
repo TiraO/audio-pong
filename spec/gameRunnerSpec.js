@@ -26,13 +26,20 @@ describe("GameRunner", function(){
     
     describe("when there is a collision", function(){
       beforeEach(function(){
-        spyOn(singletonContext.ballKinematicsUpdater, 'update').and.returnValue({ ball: {}, collisionSurfaces: ['LEFT_WALL', 'PADDLE']});
+        spyOn(singletonContext.ballKinematicsUpdater, 'update').and.returnValue({ ball: {}, collisionSurfaces: [{type:'BLOCK', block: {}}]});
       });
       
       it("updates the score", function(){
         spyOn(singletonContext.scoreUpdater, 'update');
         gameRunner.runStep();
-        expect(singletonContext.scoreUpdater.update).toHaveBeenCalledWith(['LEFT_WALL', 'PADDLE']);
+        expect(singletonContext.scoreUpdater.update).toHaveBeenCalledWith([{type:'BLOCK', block: {}}]);
+      });
+      
+      it('destroys any block that needs to be destroyed', function(){
+        spyOn(singletonContext.blockDestroyer, 'removeDamagedBlocks');
+
+        gameRunner.runStep();
+        expect(singletonContext.blockDestroyer.removeDamagedBlocks).toHaveBeenCalledWith([{type:'BLOCK', block: {}}]);
       });
     });
     
@@ -41,7 +48,7 @@ describe("GameRunner", function(){
       beforeEach(function(){
         ballController = singletonContext.ballController;
         singletonContext.lives = 3;
-        spyOn(singletonContext.ballKinematicsUpdater, 'update').and.returnValue({ ball: new Ball(), collisionSurfaces: ['BOTTOM_WALL']});
+        spyOn(singletonContext.ballKinematicsUpdater, 'update').and.returnValue({ ball: new Ball(), collisionSurfaces: [{type: 'BOTTOM_WALL'}]});
       });
       
       it('sticks the ball to the paddle', function(){

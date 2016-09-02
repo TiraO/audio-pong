@@ -8,7 +8,7 @@ var BlockCollisionDetector = function(){
       var bottomRight = geometryHelper.addVectors(block.bottomLeft, {x:block.width, y: 0});
       var topRight = geometryHelper.addVectors(block.bottomLeft, {x: block.width, y: -block.height});
       
-      var collisionResult = { collisionSurface: 'BLOCK', ball: { position:{}, velocity:{} }};
+      var collisionResult = { collisionSurface: {type: 'BLOCK', block: block}, ball: { position:{}, velocity:{} }};
       
       if(geometryHelper.pointIsLeftOfRectangle(ball.position, block)){
         var leftIntersectionResult = geometryHelper.findLineIntersection(bottomLeft, topLeft, ball.position, updatedPosition);

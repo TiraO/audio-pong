@@ -1,6 +1,7 @@
 var ScoreUpdater = function(){
   this.update = function(collisionSurfaces){
-    if(_.contains(collisionSurfaces, 'PADDLE')) {   
+    var collisionTypes = _.pluck(collisionSurfaces, 'type');
+    if(_.contains(collisionTypes, 'PADDLE')) {   
       singletonContext.playerScore ++;
     }
   };

@@ -18,10 +18,4 @@ var PaddleController = function(options){
       ball.position.x = paddle.bottomLeft.x + paddle.width/2;
     }
   };
-  
-  this.stickBall = function(){
-    ball.position.x = paddle.bottomLeft.x + paddle.width/2;
-    ball.position.y = paddle.bottomLeft.y - paddle.height;
-    ball.stickToPaddle();
-  };
 };

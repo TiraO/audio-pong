@@ -23,8 +23,9 @@ describe("BlockCollisionDetector", function(){
         collision = blockCollisionDetector.detectCollision(ball, block);
       });
 
-      it('has a collisionSurface of BLOCK', function(){
-        expect(collision.collisionSurface).toBe('BLOCK');
+      it('has a collisionSurface set to the block, with type BLOCK', function(){
+        expect(collision.collisionSurface.type).toBe('BLOCK');
+        expect(collision.collisionSurface.block).toBe(block);
       });
       
 

@@ -69,17 +69,4 @@ describe("PaddleController", function(){
       });
     });
   });
-  
-  describe("stickBall", function(){
-    it('moves the ball to the center of the paddle', function(){
-      paddleController.stickBall();
-      expect(ball.position.x).toBe(paddle.bottomLeft.x + paddle.width/2);
-      expect(ball.position.y).toBe(paddle.bottomLeft.y - paddle.height);
-    });
-    
-    it('sticks the ball', function(){
-      paddleController.stickBall();
-      expect(ball.isStuckToPaddle()).toBeTruthy();
-    });
-  });
 });

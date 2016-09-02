@@ -2,10 +2,12 @@ var GameRunner = function(){
   this.runStep = function(){
     var scoreUpdater = singletonContext.scoreUpdater;
     var ballKinematicsUpdater = singletonContext.ballKinematicsUpdater;
+    var blockDestroyer = singletonContext.blockDestroyer;
+    
     var kinematicsResult = ballKinematicsUpdater.update(singletonContext.ball, singletonContext.stage, singletonContext.arrowControlledPaddle);
     
     singletonContext.ball.setKinematics(kinematicsResult.ball);
-    
+    blockDestroyer.removeDamagedBlocks(kinematicsResult.collisionSurfaces);
     scoreUpdater.update(kinematicsResult.collisionSurfaces);
     
     if(this.didHitBottom(kinematicsResult)){
@@ -23,6 +25,6 @@ var GameRunner = function(){
   };
   
   this.didHitBottom = function(kinematicsResult){
-    return _.contains(kinematicsResult.collisionSurfaces, 'BOTTOM_WALL')
+    return _.chain(kinematicsResult.collisionSurfaces).pluck('type').contains('BOTTOM_WALL').value();
   };
 };

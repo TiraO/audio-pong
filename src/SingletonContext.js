@@ -3,11 +3,12 @@ var SingletonContext = function(){
   this.wallCollisionDetector = new WallCollisionDetector();
   this.paddleCollisionDetector = new PaddleCollisionDetector();
   this.blockCollisionDetector = new BlockCollisionDetector();
+  this.blockDestroyer = new BlockDestroyer();
   this.geometryHelper = new GeometryHelper();
   this.stage = { width: 500, height: 500 };
   this.scoreUpdater = new ScoreUpdater();
   this.ball = ball = new Ball();
-  this.blocks = [new Block(), new Block()];
+  this.blocks = [new Block(), new Block(), new Block(), new Block(), new Block(), new Block()];
   this.lives = 3;
   this.eventBus = new EventBus();
   

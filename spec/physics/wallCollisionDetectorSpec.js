@@ -36,7 +36,7 @@ describe("WallCollisionDetector", function(){
         });
 
         it("is tagged as a collision with the left wall", function() {
-	        expect(collision.collisionSurface).toEqual('LEFT_WALL');
+	        expect(collision.collisionSurface.type).toEqual('LEFT_WALL');
 	      });
         
         
@@ -77,7 +77,7 @@ describe("WallCollisionDetector", function(){
         });
         
         it("is tagged as a collision with the right wall", function() {
-	        expect(collision.collisionSurface).toEqual('RIGHT_WALL');
+	        expect(collision.collisionSurface.type).toEqual('RIGHT_WALL');
 	      });
         
         it("has an x position of the right wall", function(){
@@ -116,7 +116,7 @@ describe("WallCollisionDetector", function(){
         });
         
         it("is tagged as a collision with the top wall", function() {
-	        expect(collision.collisionSurface).toEqual('TOP_WALL');
+	        expect(collision.collisionSurface.type).toEqual('TOP_WALL');
 	      });
         
         it("has an x position of the original velocity plus the original position", function(){
@@ -153,7 +153,7 @@ describe("WallCollisionDetector", function(){
         });
 
         it("is tagged as a collision with the bottom wall", function() {
-	        expect(collision.collisionSurface).toEqual('BOTTOM_WALL');
+	        expect(collision.collisionSurface.type).toEqual('BOTTOM_WALL');
 	      });
         
         it("has an x position of the original velocity plus the original position", function(){

@@ -30,7 +30,7 @@ var PaddleCollisionDetector = function(){
       };
       
       return {
-        collisionSurface: 'PADDLE',
+        collisionSurface: {type: 'PADDLE'},
         position: {
           x: updatedBall.position.x,
           y: paddle.bottomLeft.y - paddle.height
