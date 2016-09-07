@@ -30,7 +30,8 @@ module.exports = function (grunt) {
     includeSource: {
       app: {
         files: {
-          'index.html': 'src/html/index.template.html'
+          'index.html': 'src/html/index.template.html',
+          'game.html': 'src/html/game.template.html'
         }
       },
       spec: {
