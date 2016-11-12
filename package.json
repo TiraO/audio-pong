@@ -4,7 +4,8 @@
   "description": "sound based pong game",
   "main": "main.js",
   "scripts": {
-    "test": "jasmine"
+    "test": "jasmine",
+    "start": "python -m SimpleHTTPServer"
   },
   "author": "Tira Odhner",
   "license": "ISC",
