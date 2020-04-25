@@ -8,9 +8,8 @@ var AudioRenderer = function () {
   this.load = function ( songFileName ) {
     this.loadState.loading = true;
     var audioContext = singletonContext.audioContext;
-    var panner = singletonContext.audioPanner;
     var source = singletonContext.audioSource = audioContext.createBufferSource();
-    request = new XMLHttpRequest();
+    var request = new XMLHttpRequest();
 
     request.open('GET', '/assets/' + songFileName, true);
 
@@ -26,45 +25,22 @@ var AudioRenderer = function () {
           audioRenderer.loadState.loaded = true;
           source.buffer = buffer;
 
-          // source.connect(panner);
-          // panner.connect(audioContext.destination);
-
           var splitter = audioContext.createChannelSplitter(2);
           var merger = audioContext.createChannelMerger(2);
 
           source.connect(splitter);
-          // var rightSplit = audioContext.createChannelSplitter(2);
-          // splitter.connect(rightSplit, 0)
-          //
-        console.log("creating gain")
           var gainL = audioContext.createGain();
           var gainR = audioContext.createGain();
           splitter.connect(gainL, 0);
           splitter.connect(gainR, 1);
-          // panner.connect(audioContext.destination);
-
-          // gainL.setValueAtTime(0, audioContext.currentTime + 500);
-          // gainR.setValueAtTime(1, audioContext.currentTime + 500);
           gainL.gain.value = 0.5;
           gainR.gain.value = 0.5;
           audioRenderer.gainL = gainL;
           audioRenderer.gainR = gainR;
-          // splitter.connect(audioContext.destination);
-
-          // gainL.connect(audioContext.destination, 0);
-          // gainR.connect(audioContext.destination, 0);
-          // this.gainR = gainR;
-          // this.gainL = gainL;
-          // merger.connect(gainL, 0)
-          // merger.connect(gainR, 1)
           gainL.connect(merger, 0, 1);
           gainR.connect(merger, 0, 0);
           merger.connect(audioContext.destination);
-          // gainL.connect(audioContext.destination, 1);
-          // gainR.connect(audioContext.destination, 1);
-          // splitter.connect(audioContext.destination, 0);
           source.loop = true;
-          this.started = false;
 
           source.start();
 
@@ -74,7 +50,7 @@ var AudioRenderer = function () {
           console.warn("Error with decoding audio data", e);
         });
 
-    }
+    };
 
     request.send();
   };
