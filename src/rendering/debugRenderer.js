@@ -1,13 +1,14 @@
 var DebugRenderer = function(){
   var pixiStage, graphics, renderer, scoreText;
   this.init = function(){
-     renderer = PIXI.autoDetectRenderer(800, 600, { antialias: true });
+    renderer = PIXI.autoDetectRenderer(800, 600, { antialias: true });
     document.body.appendChild(renderer.view);
     pixiStage = new PIXI.Container();
     graphics = new PIXI.Graphics();
     pixiStage.addChild(graphics);
 
     renderer.render(pixiStage);
+    graphics.filters = [new PIXI.filters.BlurFilter()]
   };
   
   this.render = function(stage, ball, paddle){
@@ -28,7 +29,7 @@ var DebugRenderer = function(){
   
   this.renderStage = function(stage){
     graphics.lineStyle(2, 0x0000FF, 1);
-    graphics.beginFill(0x02070B, 1);
+    graphics.beginFill(0x272d37, 1);
     graphics.drawRect(0, 0, stage.width, stage.height);
   };
   
@@ -38,9 +39,11 @@ var DebugRenderer = function(){
   };
   
   this.renderBallY = function(stage, ball){
-    graphics.lineStyle(2, 0x0000FF, 1);
+    graphics.lineStyle(0, 0x0000FF, 1);
+
     graphics.beginFill(0xFF700B, 1);
-    graphics.drawRect(0, ball.position.y - 4, stage.width, 5);
+
+    graphics.drawRect(0, Math.floor(ball.position.y - 4), stage.width, 5);
   }
   
   this.renderPaddle = function(paddle){
