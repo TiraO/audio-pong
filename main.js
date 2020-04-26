@@ -24,7 +24,11 @@
       renderer.init();
       requestAnimationFrame(render);
 //      requestAnimationFrame(rupdate);
-      var interval = window.setInterval(update, 50);
-      var interval2 = window.setInterval(render, 80);
+//       var interval = window.setInterval(update, 50);
+      var interval = window.setInterval(function ( ) {
+        update();
+        render();
+      }, 50);
+//       var interval2 = window.setInterval(render, 80);
   }};
 })();

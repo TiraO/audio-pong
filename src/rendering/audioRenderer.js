@@ -16,7 +16,6 @@ var AudioRenderer = function () {
     request.responseType = 'arraybuffer';
 
     var audioRenderer = this;
-
     request.onload = function () {
 
       var audioData = request.response;
@@ -31,17 +30,18 @@ var AudioRenderer = function () {
           source.connect(splitter);
           var gainL = audioContext.createGain();
           var gainR = audioContext.createGain();
+          audioRenderer.gainL = gainL;
+          audioRenderer.gainR = gainR;
+
           splitter.connect(gainL, 0);
           splitter.connect(gainR, 1);
           gainL.gain.value = 0.5;
           gainR.gain.value = 0.5;
-          audioRenderer.gainL = gainL;
-          audioRenderer.gainR = gainR;
           gainL.connect(merger, 0, 1);
           gainR.connect(merger, 0, 0);
           merger.connect(audioContext.destination);
-          source.loop = true;
 
+          source.loop = true;
           source.start();
 
         },
@@ -60,8 +60,10 @@ var AudioRenderer = function () {
     if (audioRenderer.loadState.loaded) {
       var fractionFromLeft = ball.position.x / stage.width;
 
-      audioRenderer.gainR.gain.value = 1 - fractionFromLeft;
-      audioRenderer.gainL.gain.value = (fractionFromLeft);
+      audioRenderer.gainR.gain.cancelScheduledValues(singletonContext.audioContext.currentTime);
+      audioRenderer.gainL.gain.cancelScheduledValues(singletonContext.audioContext.currentTime);
+      audioRenderer.gainR.gain.linearRampToValueAtTime(1 - fractionFromLeft, singletonContext.audioContext.currentTime + 0.02);
+      audioRenderer.gainL.gain.linearRampToValueAtTime(fractionFromLeft, singletonContext.audioContext.currentTime + 0.02);
     }
   };
 

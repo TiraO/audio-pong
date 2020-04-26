@@ -8,7 +8,7 @@ var DebugRenderer = function(){
     pixiStage.addChild(graphics);
 
     renderer.render(pixiStage);
-    graphics.filters = [new PIXI.filters.BlurFilter()]
+    // graphics.filters = [new PIXI.filters.BlurFilter(1)]
   };
   
   this.render = function(stage, ball, paddle){
@@ -16,7 +16,7 @@ var DebugRenderer = function(){
     graphics.clear();
     this.renderStage(stage);
     this.renderBallY(stage, ball);
-    this.renderBall(ball);
+    // this.renderBall(ball);
     this.renderBallSound(stage, ball);
     this.renderPaddle(paddle);
     this.renderScore(singletonContext.playerScore);
