@@ -8,7 +8,7 @@ describe("LevelController", function(){
     var firstLevelBlocks;
     beforeEach(function(){
       firstLevelBlocks = [ new Block(), new Block()];
-      var levels = [
+      singletonContext.levels = [
       {
         title: "Take it Block",
         blocks: firstLevelBlocks
@@ -21,19 +21,19 @@ describe("LevelController", function(){
     
     it("sets the level title", function(){
       levelController.startLevel(0);
-      expect()
+      expect(singletonContext.levelName).toEqual("Take it Block");
     });
 
     it("sticks the ball to the paddle", function(){
         spyOn(singletonContext.ballController, 'stickBallToPaddle');
-        levelController.startLevel();
+        levelController.startLevel(0);
         expect(singletonContext.ballController.stickBallToPaddle).toHaveBeenCalled();
     });
 
     it("sets the blocks to the blocks for that level", function(){
       var originalBlocks = singletonContext.blocks;
 
-      levelController.startLevel();
+      levelController.startLevel(0);
 
       expect(singletonContext.blocks).toBe(originalBlocks);
       expect(singletonContext.blocks).toInclude(firstLevelBlocks);

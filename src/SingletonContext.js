@@ -3,6 +3,7 @@ var SingletonContext = function () {
   this.wallCollisionDetector = new WallCollisionDetector();
   this.paddleCollisionDetector = new PaddleCollisionDetector();
   this.blockCollisionDetector = new BlockCollisionDetector();
+  this.levelController = new LevelController();
   this.blockDestroyer = new BlockDestroyer();
   this.geometryHelper = new GeometryHelper();
   this.stage = { width: 500, height: 500 };
